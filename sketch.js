@@ -17,13 +17,13 @@ function setup(){
   createCanvas(500,500);
 
   balloon=createSprite(250,450,150,150);
-  balloon.addAnimation("hotAirBalloon",balloonImage1);
+  balloon.addAnimation("hotAirBalloon",balloonImage2);
   balloon.scale=0.5;
-
+database.ref('balloon/position').on("value",readPosition,showError);
 }
 
 function draw(){
-  background("bg");
+  background(bg);
   
     if(keyDown(LEFT_ARROW)){
       writePosition(-1,0);
@@ -52,8 +52,8 @@ function writePosition(x,y){
 
 function readPosition(data){
  position = data.val();
-Ball.x = position.x;
-Ball.y = position.y;
+ balloon.x = position.x;
+ balloon.y = position.y;
 }
 
 function showError(){
